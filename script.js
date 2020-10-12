@@ -1,6 +1,11 @@
 let body = document.body;
 let href = document.location.href;
 
+let preloader = document.getElementById('preloader');
+setTimeout(() => {
+  preloader.classList.add('pre');
+}, 5000);
+
 let request = (href) => {
   let userName = href.split('=');
   if (userName[1]) {
@@ -11,7 +16,17 @@ let request = (href) => {
   return username;
 }
 
-fetch(`https://api.github.com/users/${request(href)}`)
+let url = `https://api.github.com/users/${request(href)}`;
+let date = new Date();
+let getDate = new Promise((resolve, reject) => {
+  setTimeout(() => date ? resolve(date) : reject('Errow date'), 1500)
+});
+let getUrl = new Promise((resolve, reject) => {
+  setTimeout(() => url ? resolve(url) : reject('Errow Url'), 1500)
+});
+
+Promise.all([getDate, getUrl])
+  .then(([url, date]) => fetch(`https://api.github.com/users/${request(href)}`))
   .then(rep => rep.json())
   .then(json => {
     let name = document.createElement('a');
@@ -39,3 +54,4 @@ fetch(`https://api.github.com/users/${request(href)}`)
     }
     body.append(bio);
   })
+.catch(err => console.log(err));
