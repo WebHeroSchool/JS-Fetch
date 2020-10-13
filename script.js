@@ -37,6 +37,7 @@ Promise.all([getDate, getUrl])
       name.innerHTML = 'Information about name is not available'
     }
     body.append(name);
+    name.classList.add('nameC');
 
     let img = document.createElement('img');
     if (json.avatar_url != null) {
@@ -45,6 +46,7 @@ Promise.all([getDate, getUrl])
       img.src = 'Information about avatar is not available'
     }
     body.append(img);
+    img.classList.add('imgC');
 
     let bio = document.createElement('p');
     if (json.bio != null) {
@@ -53,5 +55,8 @@ Promise.all([getDate, getUrl])
       bio.innerHTML = 'Information about bio in not available'
     }
     body.append(bio);
+    bio.classList.add('bioC');
+
+    body.append(date);
   })
 .catch(err => console.log(err));
