@@ -18,3 +18,22 @@
   visibility: hidden;
   opacity: 0;
 }
+
+.nameC {
+  position: relative;
+  top: 43px;
+  text-decoration: none;
+  color: black;
+  font-size: 30px;
+}
+
+.imgC {
+  position: relative;
+  left: -199px;
+  border: 8px double green;
+}
+
+.bioC {
+  position: relative;
+  top: 65px;
+}
